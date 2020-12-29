@@ -1,0 +1,3 @@
+[submodule "src/submodules/muzero-general"]
+	path = src/submodules/muzero_general
+	url = git@github.com:ssashir06/muzero-general.git
