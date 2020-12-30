@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "module": "uvicorn",
-            "cwd": "src",
+            "cwd": "${workspaceFolder}/src",
             "args": [
                 "main:app",
                 "--reload"
