@@ -4,7 +4,7 @@ from unittest import mock
 import main
 
 client = TestClient(main.app)
-dummy_test_model = "src/submodules/muzero_general/results/scorefour/2020-12-28--19-27-14/model.checkpoint"
+dummy_test_model = "submodules/muzero-general/results/scorefour/2020-12-28--19-27-14/model.checkpoint"
 
 @mock.patch.dict(os.environ, {"MODEL_PATH_scorefour": dummy_test_model})
 def test_read_main():

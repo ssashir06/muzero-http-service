@@ -4,8 +4,8 @@ import hashlib
 import os
 from typing import Optional
 from fastapi import Body, FastAPI, HTTPException
-from muzero.games.abstract_game import AbstractGame
-from muzero.games import scorefour
+from games.abstract_game import AbstractGame
+from games import scorefour
 from self_play_replicate import SelfPlayReplicate
 from replication import Replication
 
@@ -41,7 +41,7 @@ def calculate_game_step(
         raise HTTPException(status_code=404, detail=f"The game_name '{game_name}' is invalid.")
     
     try:
-        game_module = importlib.import_module("muzero.games." + game_name)
+        game_module = importlib.import_module("games." + game_name)
     except ModuleNotFoundError as err:
         raise HTTPException(status_code=404, detail=f"The game_name '{game_name}' is not found.")
 

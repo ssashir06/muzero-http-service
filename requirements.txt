@@ -1,4 +1,2 @@
 -r src/requirements.txt
--r src/submodules/muzero_general/requirements.txt
-src/submodules/muzero_general
-#-e git://github.com/ssashir06/muzero-general.git@feature/score-four#egg=muzero_general
+-r submodules/muzero-general/requirements.txt

@@ -1,9 +1,9 @@
 import torch
 import numpy
 import random
-from muzero.games.abstract_game import AbstractGame
-from muzero.general.self_play import GameHistory, MCTS, SelfPlay
-from muzero.general.models import MuZeroNetwork
+from games.abstract_game import AbstractGame
+from self_play import GameHistory, MCTS, SelfPlay
+from models import MuZeroNetwork
 
 class SelfPlayReplicate():
     def __init__(
@@ -92,7 +92,7 @@ class SelfPlayReplicate():
                     else 0,
                 )
             elif opponent == "random":
-                action, root = numpy.random.choice(self.game.legal_actions()), None
+                action, root = int(numpy.random.choice(self.game.legal_actions())), None
             elif opponent == "expert":
                 action, root = self.game.expert_agent(), None
             elif opponent == "human":
