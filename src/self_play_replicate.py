@@ -2,7 +2,7 @@ import torch
 import numpy
 import random
 from muzero.games.abstract_game import AbstractGame
-from muzero.general.self_play import GameHistory
+from muzero.general.self_play import GameHistory, MCTS, SelfPlay
 from muzero.general.models import MuZeroNetwork
 
 class SelfPlayReplicate():
@@ -16,10 +16,9 @@ class SelfPlayReplicate():
         self.done = False
 
         # Fix random generator seed
-        if seed is not None:
-            numpy.random.seed(seed)
-            torch.manual_seed(seed)
-            random.seed(seed)
+        numpy.random.seed(seed)
+        torch.manual_seed(seed)
+        random.seed(seed)
 
         # Load model
         if self.checkpoint is None:
@@ -85,7 +84,7 @@ class SelfPlayReplicate():
                     self.game.to_play(),
                     True,
                 )
-                action = select_action(
+                action = SelfPlay.select_action(
                     root,
                     temperature
                     if not temperature_threshold

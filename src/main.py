@@ -23,9 +23,9 @@ def get_hash_for_model(file_name: str) -> str:
 
 @app.post("/game/{game_name}/{opponent}")
 def calculate_game_step(
-    game_name: str, opponent: str, 
+    game_name: str, opponent: str, seed: int,
     replication: Replication,
-    human_action: Optional[int] = None, seed: Optional[int] = None,
+    human_action: Optional[int] = None,
     temperature: Optional[float] = 0, temperature_threshold: Optional[float] = 0,
     preffered_model_hash: Optional[str] = None
 ):
