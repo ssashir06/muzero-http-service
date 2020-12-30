@@ -91,7 +91,7 @@ class SelfPlayReplicate():
                     else 0,
                 )
             elif opponent == "random":
-                action, root = int(numpy.random.choice(self.game.legal_actions())), None
+                action, root = numpy.random.choice(self.game.legal_actions()), None
             elif opponent == "expert":
                 action, root = self.game.expert_agent(), None
             elif opponent == "human":
@@ -100,6 +100,9 @@ class SelfPlayReplicate():
                 raise ValueError(
                     'Wrong argument: "opponent" argument should be "self", "human", "expert" or "random"'
                 )
+
+            # cast action variable
+            action = int(action)
 
             if action is None or not action in self.game.legal_actions():
                 if (opponent == "human"):
