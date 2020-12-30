@@ -5,7 +5,6 @@ import os
 from typing import Optional
 from fastapi import Body, FastAPI, HTTPException
 from games.abstract_game import AbstractGame
-from games import scorefour
 from self_play_replicate import SelfPlayReplicate
 from replication import Replication
 
