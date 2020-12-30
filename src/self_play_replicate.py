@@ -49,10 +49,9 @@ class SelfPlayReplicate():
                 if self.done:
                     raise ValueError("Status is already 'done' but there still another step.")
                 observation, reward, self.done = self.game.step(action)
-                
-                self.game_history.store_search_statistics(root, self.config.action_space)
 
                 # Next batch
+                self.game_history.root_values.append(root)
                 self.game_history.action_history.append(action)
                 self.game_history.observation_history.append(observation)
                 self.game_history.reward_history.append(reward)
