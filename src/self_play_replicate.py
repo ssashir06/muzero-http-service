@@ -20,19 +20,20 @@ class SelfPlayReplicate():
         torch.manual_seed(seed)
         random.seed(seed)
 
-        # Load model
-        if self.checkpoint is None:
-            self.checkpoint = torch.load(checkpoint_file)
-        
-        # Initialize network
-        self.model = MuZeroNetwork(self.config)
-        self.model.set_weights(self.checkpoint["weights"])
-        self.model.to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
-        self.model.eval()
+        if checkpoint is not None and checkpoint_file is not None:
+            # Load model
+            if self.checkpoint is None:
+                self.checkpoint = torch.load(checkpoint_file)
+            
+            # Initialize network
+            self.model = MuZeroNetwork(self.config)
+            self.model.set_weights(self.checkpoint["weights"])
+            self.model.to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+            self.model.eval()
         
     def replicate_game(
         self, replicate_buffer: list
-    ) -> None:
+    ) -> list:
         """
         Play one game with actions based on the Monte Carlo tree search at each moves.
         """
@@ -58,10 +59,15 @@ class SelfPlayReplicate():
                 self.game_history.to_play_history.append(self.game.to_play())
                 
                 assert(player == self.game.to_play()), f"Expected player number is wrong. Expected {player} but got {self.game.to_play()}"
+       
+        if isinstance(observation, numpy.ndarray):
+            observation = observation.tolist()
+        
+        return observation
 
     def add_action(
         self, opponent: str, temperature: float = 0, temperature_threshold: float = 0, human_action: int = None
-    ) -> (int, str):
+    ) -> (int, str, list):
         with torch.no_grad():
             if self.done:
                 raise ValueError("Status is already 'done' but there still another step.")
@@ -119,7 +125,9 @@ class SelfPlayReplicate():
             self.game_history.reward_history.append(reward)
             self.game_history.to_play_history.append(self.game.to_play())
 
-            return action, self.game.action_to_string(action)
+            if isinstance(observation, numpy.ndarray):
+                observation = observation.tolist()
+            return action, self.game.action_to_string(action), observation
     
     def get_history_buffer(self) -> list:
         return [
