@@ -15,5 +15,4 @@ COPY submodules submodules
 COPY src src
 COPY models models
 
-EXPOSE 8000
-CMD uvicorn src.main:app
+CMD uvicorn src.main:app --port 8000 --host 0.0.0.0
