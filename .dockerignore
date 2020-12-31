@@ -1,0 +1,4 @@
+models/_for_test/
+**/venv/
+**/__pycache__/
+**/.git/
