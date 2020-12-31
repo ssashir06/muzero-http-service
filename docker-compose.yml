@@ -4,7 +4,7 @@ services:
   muzero-http:
     build: .
     volumes:
-      - ./models/_for_test/tictactoe:/app/models/tictactoe
+      - ./models/_for_test/tictactoe/model.checkpoint:/app/models/tictactoe/model.checkpoint
     environment:
       - MODEL_PATH_tictactoe=models/tictactoe/model.checkpoint
       - CUDA_VISIBLE_DEVICES=
