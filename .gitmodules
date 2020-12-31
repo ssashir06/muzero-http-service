@@ -1,3 +1,4 @@
 [submodule "src/submodules/muzero-general"]
 	path = submodules/muzero-general
 	url = https://github.com/werner-duvaud/muzero-general.git
+	branch = master
