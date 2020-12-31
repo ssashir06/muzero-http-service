@@ -15,7 +15,7 @@
                 "--reload"
             ],
             "env": {
-                "MODEL_PATH_tictactoe": "submodules/muzero-general/results/tictactoe/2020-12-31--00-31-12/model.checkpoint",
+                "MODEL_PATH_tictactoe": "models/_for_test/tictactoe/model.checkpoint",
                 "CUDA_VISIBLE_DEVICES": "",
             },
             "jinja": true
