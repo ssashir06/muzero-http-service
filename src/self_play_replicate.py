@@ -20,7 +20,7 @@ class SelfPlayReplicate():
         torch.manual_seed(seed)
         random.seed(seed)
 
-        if checkpoint is not None and checkpoint_file is not None:
+        if checkpoint is not None or checkpoint_file is not None:
             # Load model
             if self.checkpoint is None:
                 self.checkpoint = torch.load(checkpoint_file)
