@@ -1,5 +1,12 @@
 # MuZero http service
 
+## Purpose
+
+This program is created to use MuZero's game steps by another program.
+Mainly board games are supposed to be used.
+
+## Notices
+
 - This program provides http service to see MuZero's action.
 - This program uses [MuZero General](https://github.com/werner-duvaud/muzero-general/)'s code in a submodule's directory.
 - This program uses a code based on MuZero's one.
@@ -72,7 +79,8 @@ Another game can be used by adding or changing these things by editing [docker-c
 
 - Checkpoint model file
     - :point_right: `./models/_for_test/tictactoe/model.checkpoint:/app/models/tictactoe/model.checkpoint`
-    - The checkpoint model file can be referenced by the program by this configuratoin. 
+    - The checkpoint model file is located by this config.
 - Environment variable
     - :point_right: `MODEL_PATH_tictactoe=models/tictactoe/model.checkpoint`
-    - The checkpoint model file is located by this configuration. The variable name is having the format of `MODEL_PATH_{game_name}`.
+    - The checkpoint model file can be referenced by the program by this config. 
+    - The variable name is having the format of `MODEL_PATH_{game_name}`.
