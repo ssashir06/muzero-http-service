@@ -18,15 +18,28 @@ Mainly board games are supposed to be used.
 
 - Docker for Desktop
 
-## Build and run
+## Run
+### Pulling image from Docker Hub
+
+This is most easiest way to try it.
+
+1. `docker run --rm -it ssashir06/muzero-http-service`
+
+### Using Docker Compose
+
+You also can build it manually.
 
 1. `git clone https://github.com/ssashir06/muzero-http-service.git`
-2. `cd muzero-http-service`
-3. `git submodule init`
-4. `git submodule update --remote`
-5. `docker-compose up --build`
+1. `cd muzero-http-service`
+1. `git submodule init`
+1. `git submodule update --remote`
+1. `docker-compose up --build`
 
-## Play Tic-Tac-Toe by using sample UI application
+## Play Tic-Tac-Toe to try
+
+### By using sample UI application
+
+This is the easiest way to use it.
 
 1. Open http://localhost:8888 to open a sample UI application.
 2. Click the "Reset" button.
@@ -34,7 +47,9 @@ Mainly board games are supposed to be used.
 4. Click the "expert" or the "random" button to see another action.
 5. Click a number at the "Actions:" label or a cell in the board to select human action. 
 
-## Play Tic-Tac-Toe by using Swagger
+### By using Swagger
+
+This might be complicated a little. 
 
 1. Open http://localhost:8000/docs to see a page of Swagger.
 1. Try to use `/game/{game_name}`
@@ -89,3 +104,12 @@ Another game's model can be used by adding or changing these things by editing [
     - :point_right: `MODEL_PATH_tictactoe=./models/_for_test/tictactoe/model.checkpoint` in [docker-compose.yml](docker-compose.yml)
     - The checkpoint model file can be referenced by the program by this environment variable. 
     - A new environment variable having the format of `MODEL_PATH_{game_name}`.
+
+# Issues
+
+- The attached model file in this repository / docker image for the Tic-Tac-Toe is not trained at all. This is just only for testing.
+- If the "random" is selected as the opponent, it selects a similar action each time because it is using same random seed.
+
+# References
+
+- [MuZero General](https://github.com/werner-duvaud/muzero-general)
