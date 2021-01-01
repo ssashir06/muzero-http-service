@@ -75,8 +75,8 @@ export class MuZeroHttpService {
         ).then(ret => ret.data);
         this._nextPlayer = step.next;
         this._legalActions = step.legal;
+        this._observation = step.observation;
 
-        this._observation = null;
         this._steps = null;
         this._modelHash = null;
         this._done = false;
