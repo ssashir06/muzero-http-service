@@ -18,7 +18,7 @@ Mainly board games are supposed to be used.
 
 - Docker for Desktop
 
-## Build
+## Build and run
 
 1. `git clone https://github.com/ssashir06/muzero-http-service.git`
 2. `cd muzero-http-service`
@@ -26,9 +26,17 @@ Mainly board games are supposed to be used.
 4. `git submodule update --remote`
 5. `docker-compose up --build`
 
-## Run Tic-Tac-Toe's program
+## Play Tic-Tac-Toe by using sample UI application
 
-1. Open http://127.0.0.1:8000/docs to see a page of Swagger.
+1. Open http://localhost:8888 to open a sample UI application.
+2. Click the "Reset" button.
+3. Click the "self" button to see the MuZero's action.
+4. Click the "expert" or the "random" button to see another action.
+5. Click a number at the "Actions:" label or a cell in the board to select human action. 
+
+## Play Tic-Tac-Toe by using Swagger
+
+1. Open http://localhost:8000/docs to see a page of Swagger.
 1. Try to use `/game/{game_name}`
     - :point_right: This method shows basic info for the specified game. It includes action_space and players data.
     1. Fill `game_name` as `tictactoe`
@@ -74,13 +82,10 @@ Mainly board games are supposed to be used.
 
 # Customize
 
-This program uses the following things to use tic-tac-toe.
-Another game can be used by adding or changing these things by editing [docker-compose.yml](docker-compose.yml) file.
+This program uses tic-tac-toe's module in the [models](models) directory.
+Another game's model can be used by adding or changing these things by editing [docker-compose.yml](docker-compose.yml) file.
 
-- Checkpoint model file
-    - :point_right: `./models/_for_test/tictactoe/model.checkpoint:/app/models/tictactoe/model.checkpoint`
-    - The checkpoint model file is located by this config.
 - Environment variable
-    - :point_right: `MODEL_PATH_tictactoe=models/tictactoe/model.checkpoint`
-    - The checkpoint model file can be referenced by the program by this config. 
-    - The variable name is having the format of `MODEL_PATH_{game_name}`.
+    - :point_right: `MODEL_PATH_tictactoe=./models/_for_test/tictactoe/model.checkpoint` in [docker-compose.yml](docker-compose.yml)
+    - The checkpoint model file can be referenced by the program by this environment variable. 
+    - A new environment variable having the format of `MODEL_PATH_{game_name}`.

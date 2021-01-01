@@ -1,12 +1,29 @@
 version: "3.7"
 
 services:
-  muzero-http:
+  api:
     build: .
     volumes:
-      - ./models/_for_test/tictactoe/model.checkpoint:/app/models/tictactoe/model.checkpoint
+      - ./models:/app/models
     environment:
-      - MODEL_PATH_tictactoe=models/tictactoe/model.checkpoint
+      - MODEL_PATH_tictactoe=./models/_for_test/tictactoe/model.checkpoint
       - CUDA_VISIBLE_DEVICES=
     ports:
       - "8000:8000"
+
+  tictactoe-ui:
+    build: samples/tictactoe-ui
+    environment:
+      - NGINX_ENTRYPOINT_QUIET_LOGS=1
+
+  reverseproxy:
+    image: nginx:1.18
+    environment:
+      - NGINX_ENTRYPOINT_QUIET_LOGS=1
+    volumes:
+      - ./reverseproxy/conf.d:/etc/nginx/conf.d
+    ports:
+      - "8888:8888"
+    depends_on:
+      - api
+      - tictactoe-ui

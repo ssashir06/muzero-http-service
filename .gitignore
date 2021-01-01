@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/python,vscode
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,vscode
+# Created by https://www.toptal.com/developers/gitignore/api/python,vscode,vuejs
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,vscode,vuejs
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -150,4 +150,11 @@ dmypy.json
 !.vscode/extensions.json
 *.code-workspace
 
-# End of https://www.toptal.com/developers/gitignore/api/python,vscode
+### Vuejs ###
+# Recommended template: Node.gitignore
+
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# End of https://www.toptal.com/developers/gitignore/api/python,vscode,vuejs
