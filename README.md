@@ -12,6 +12,14 @@ Mainly board games are supposed to be used.
 - This program uses a code based on MuZero's one.
     - [self_play_replicate.py](src/self_play_replicate.py) is like self_play.py
   
+# Docker image
+
+Built image is located in [Docker Hub](https://hub.docker.com/r/ssashir06/muzero-http-service).
+
+
+1. `docker run --rm -it -p 8000:8000 ssashir06/muzero-http-service`
+1. Open http://localhost:8000/docs to see what apis are provided.
+
 # How to build and run
 
 ## Requirements
@@ -19,15 +27,10 @@ Mainly board games are supposed to be used.
 - Docker for Desktop
 
 ## Run
-### Pulling image from Docker Hub
-
-This is most easiest way to try it.
-
-1. `docker run --rm -it ssashir06/muzero-http-service`
 
 ### Using Docker Compose
 
-You also can build it manually.
+You can build it manually.
 
 1. `git clone https://github.com/ssashir06/muzero-http-service.git`
 1. `cd muzero-http-service`
@@ -39,7 +42,7 @@ You also can build it manually.
 
 ### By using sample UI application
 
-This is the easiest way to use it.
+This is the easiest way to use it for test.
 
 1. Open http://localhost:8888 to open a sample UI application.
 2. Click the "Reset" button.
@@ -107,7 +110,7 @@ Another game's model can be used by adding or changing these things by editing [
 
 # Issues
 
-- The attached model file in this repository / docker image for the Tic-Tac-Toe is not trained at all. This is just only for testing.
+- The attached model file in this git repository for the Tic-Tac-Toe is not trained at all. This is just only for testing.
 - If the "random" is selected as the opponent, it selects a similar action each time because it is using same random seed.
 
 # References
