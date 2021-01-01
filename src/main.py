@@ -2,6 +2,7 @@ import importlib
 import re
 import hashlib
 import os
+import numpy
 from typing import Optional
 from fastapi import Body, FastAPI, HTTPException
 from games.abstract_game import AbstractGame
@@ -47,7 +48,7 @@ def first_game_status(game_name: str, seed: int):
     observation = replicate.replicate_game([])
 
     return {
-        "observation": observation,
+        "observation": numpy.array(observation).tolist(),
         "next": replicate.game.to_play(),
         "legal": replicate.game.legal_actions(),
     }
@@ -112,7 +113,7 @@ def calculate_game_step(
     
     return {
         "model_hash": actual_hash,
-        "observation": observation,
+        "observation": numpy.array(observation).tolist(),
         "next": replicate.game.to_play(),
         "legal": replicate.game.legal_actions(),
         "action": {
